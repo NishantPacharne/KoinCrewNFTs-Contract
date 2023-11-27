@@ -138,12 +138,12 @@ export class Collections {
 
     // pay mint price token or check creator
     if (Constants.MINT_FEE > 0) { 
-    if (supply.value >= 8) { // 20
-      const token_pay = new Token(Constants.TOKEN_PAY_KT);
+    if (supply.value >= 20) { // 20
+      const token_pay = new Token(Constants.TOKEN_PAY_KCT);
       const _result = token_pay.transfer(to, Constants.ADDRESS_PAY, SafeMath.mul(args.number_tokens_to_mint, Constants.MINT_PRICE_KCT));
       System.require(_result, "Failed to pay mint");
     } else {
-      const token_pay = new Token(Constants.TOKEN_PAY_KCT);
+      const token_pay = new Token(Constants.TOKEN_PAY_KT);
       const _result = token_pay.transfer(to, Constants.ADDRESS_PAY, SafeMath.mul(args.number_tokens_to_mint, Constants.MINT_PRICE_KT));
       System.require(_result, "Failed to pay mint");
     }
@@ -191,7 +191,7 @@ export class Collections {
     balance.value = SafeMath.add(balance.value, args.number_tokens_to_mint);
 
     // check limit address
-    System.require(balance.value <= 2, "exceeds the limit of tokens per address");
+    // System.require(balance.value <= 2, "exceeds the limit of tokens per address");
 
     // increment supply
     supply.value = SafeMath.add(supply.value, args.number_tokens_to_mint);
